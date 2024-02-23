@@ -2,7 +2,9 @@
 
 ## 技术栈: Vue3 + Vite + ElementPlus + Vue-Router + Vuex + axios
 
-本项目为个人学习所用，实现了后台管理的前端部分，后端数据使用本地 Mock 和 Apifox 线上 Mock 自动生成两种模式模拟。
+本项目为个人学习所用，实现了后台管理的前端部分
+
+**后端数据使用本地 Mock 和 Apifox 线上 Mock 随机生成两种模式模拟，故看上去可能有些怪异**
 
 - 使用 Vue3 的 API+ElementPlus 组件库实现页面基础布局
 - 通过 Vue-Router 实现不同页面路由跳转

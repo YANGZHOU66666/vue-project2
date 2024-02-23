@@ -260,9 +260,10 @@ const handleSearch = () => {
 };
 
 /* 新增用户相关 */
-const dialogVisible = ref(false); //控制是否显示新增用户的窗口
+//控制是否显示新增用户的窗口
+const dialogVisible = ref(false);
+//动态绑定用户新增页面的表单
 const userFormData = reactive({
-  //动态绑定用户新增页面的表单
   name: null,
   age: null,
   sexLabel: null,
@@ -328,6 +329,12 @@ const onSubmitUserData = () => {
           tableData.value[dataIndex] = JSON.parse(JSON.stringify(userFormData));
           proxy.$refs.userForm.resetFields();
           dialogVisible.value = false;
+          proxy.$nextTick(() => {
+            let keys=Object.keys(userFormData);
+            keys.forEach((key)=>{
+              userFormData[key]=null;
+            })
+          });
         });
       }
     } else {
@@ -338,16 +345,18 @@ const onSubmitUserData = () => {
 };
 
 /* 编辑用户相关 */
-const action = ref("add"); //区分是编辑还是添加
-const curIndex = ref(0); //当前编辑的元素在当页的序号
+//区分是编辑还是添加
+const action = ref("add");
+//当前编辑的元素在当页的序号
+const curIndex = ref(0);
 const onDisplayEditUser = (res) => {
   //打开编辑窗口，进行必要设置
   action.value = "edit";
   dialogVisible.value = true;
-  proxy.$nextTick(() => {
-    Object.assign(userFormData, res.row); //将用户数据放在绑定区中
-    curIndex.value = res.$index;
-  });
+  //proxy.$nextTick(() => {
+  Object.assign(userFormData, res.row); //将用户数据放在绑定区中
+  curIndex.value = res.$index;
+  //});
 };
 const onHideEditUser = () => {
   //关闭编辑窗口
