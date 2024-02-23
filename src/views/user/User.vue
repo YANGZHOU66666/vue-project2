@@ -329,12 +329,12 @@ const onSubmitUserData = () => {
           tableData.value[dataIndex] = JSON.parse(JSON.stringify(userFormData));
           proxy.$refs.userForm.resetFields();
           dialogVisible.value = false;
-          proxy.$nextTick(() => {
+          /*proxy.$nextTick(() => {
             let keys=Object.keys(userFormData);
             keys.forEach((key)=>{
               userFormData[key]=null;
             })
-          });
+          });*/
         });
       }
     } else {
@@ -353,10 +353,10 @@ const onDisplayEditUser = (res) => {
   //打开编辑窗口，进行必要设置
   action.value = "edit";
   dialogVisible.value = true;
-  //proxy.$nextTick(() => {
+  proxy.$nextTick(() => {
   Object.assign(userFormData, res.row); //将用户数据放在绑定区中
   curIndex.value = res.$index;
-  //});
+  });
 };
 const onHideEditUser = () => {
   //关闭编辑窗口
